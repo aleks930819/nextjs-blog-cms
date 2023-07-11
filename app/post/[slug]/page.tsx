@@ -1,5 +1,7 @@
 import { DUMMY_POSTS } from '@/DUMMY_DATA';
-
+import PaddingContainer from '@/app/components/layout/padding-container';
+import PostHero from '@/app/components/post/post-hero';
+import { notFound } from 'next/navigation';
 export const generateStaticParams = async () => {
   return DUMMY_POSTS.map((post) => {
     return {
@@ -11,10 +13,13 @@ export const generateStaticParams = async () => {
 const PostPage = ({ params }: { params: { slug: string } }) => {
   const post = DUMMY_POSTS.find((post) => post.slug === params.slug);
 
+  if (!post) {
+    notFound();
+  }
   return (
-    <div className="container mx-auto">
-      <h1 className="text-4xl font-bold">{post?.title}</h1>
-    </div>
+    <PaddingContainer>
+      <PostHero post={post} />
+    </PaddingContainer>
   );
 };
 

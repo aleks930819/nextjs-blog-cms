@@ -4,9 +4,10 @@ import { ArrowRight } from 'lucide-react';
 
 interface PostContentProps {
   post: Post;
+  isPostPage?: boolean;
 }
 
-const PostContent = ({ post }: PostContentProps) => {
+const PostContent = ({ post, isPostPage = false }: PostContentProps) => {
   return (
     <div className="space-y-2">
       <div className="@md:text-sm  text-xs items-center gap-2 flex">
@@ -35,9 +36,11 @@ const PostContent = ({ post }: PostContentProps) => {
         {post.description.substring(0, 200)}...
       </p>
       <div>
-        <span className="inline-flex items-center space-x-1 text-sm font-medium text-rose-500 hover:text-rose-600 cursor-pointer">
-          Read More <ArrowRight className="inline-block" size={16} />
-        </span>
+        {!isPostPage && (
+          <span className="inline-flex items-center space-x-1 text-sm font-medium text-rose-500 hover:text-rose-600 cursor-pointer">
+            Read More <ArrowRight className="inline-block" size={16} />
+          </span>
+        )}
       </div>
     </div>
   );
