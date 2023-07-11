@@ -1,6 +1,8 @@
 import { Post } from '@/types/collection';
 import PostContent from './post-content';
 import Image from 'next/image';
+import SocialLink from '../elements/soclial-links';
+import PostBody from './post-body';
 
 interface PostHeroProps {
   post: Post;
@@ -17,6 +19,7 @@ const PostHero = ({ post }: PostHeroProps) => {
         height={400}
         className="rounded-md mt-6 w-full object-cover object-center h-[300px] sm:h-[500px] max-h-[500px]"
       />
+   
     </div>
   );
 };
