@@ -25,15 +25,15 @@ const CTACard = () => {
           Eaque sapiente assumenda non.
         </p>
         {/* Form */}
-        <form className=" flex items-center gap-2 mt-6">
+        <form className=" flex flex-col md:flex-row items-center gap-2 mt-6">
           <input
-            className="bg-white text-base rounded-md py-3 px-3
+            className="bg-white text-base rounded-md py-3 px-3 w-full md:w-auto
              outline-none focus:ring-2 ring-netural-400 placeholder:text-sm
             "
             placeholder="Enter your email address"
           />
           <button
-            className=" bg-neutral-900
+            className=" bg-neutral-900 w-full md:w-auto
            rounded-md px-3 py-3 text-neutral-200
           "
           >
