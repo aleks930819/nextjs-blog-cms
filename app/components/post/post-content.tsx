@@ -9,7 +9,7 @@ interface PostContentProps {
 const PostContent = ({ post }: PostContentProps) => {
   return (
     <div className="space-y-2">
-      <div className="text-sm items-center gap-2 flex">
+      <div className="@md:text-sm  text-xs items-center gap-2 flex">
         <div
           className={`font-medium ${
             post.category.title === 'Cities'
@@ -35,7 +35,9 @@ const PostContent = ({ post }: PostContentProps) => {
         {post.description.substring(0, 200)}...
       </p>
       <div>
-        Read More <ArrowRight className="inline-block" size={16} />
+        <span className="inline-flex items-center space-x-1 text-sm font-medium text-rose-500 hover:text-rose-600 cursor-pointer">
+          Read More <ArrowRight className="inline-block" size={16} />
+        </span>
       </div>
     </div>
   );

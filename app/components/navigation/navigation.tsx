@@ -19,7 +19,7 @@ const Navigation: FC<NavigationProps> = () => {
                 <Link href="/cities">Cities</Link>
               </li>
               <li>
-                <Link href="/expreriences">Expreriences</Link>
+                <Link href="/experiences">Experiences</Link>
               </li>
             </ul>
           </nav>
