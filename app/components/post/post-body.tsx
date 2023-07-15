@@ -1,5 +1,11 @@
+import parse from "html-react-parser";
+
 const PostBody = ({ body }: { body: string }) => {
-  return <div>{body}</div>;
+  const getParsedHtml = (body: string) => {
+    return parse(body);
+  };
+
+  return <div className="rich-text">{getParsedHtml(body)}</div>;
 };
 
 export default PostBody;
