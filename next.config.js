@@ -1,7 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['images.unsplash.com'],
+    remotePatterns: [
+      {
+        hostname: "images.unsplash.com",
+        protocol: "https",
+      },
+      {
+        hostname: "directus-production-609a.up.railway.app",
+        protocol: "https",
+      },
+    ],
   },
 };
 

@@ -13,8 +13,8 @@ const PostHero = ({ post }: PostHeroProps) => {
     <div>
       <PostContent isPostPage={true} post={post} />
       <Image
-        src={post.image}
-        alt={post.title}
+        src={post?.image}
+        alt={post?.title}
         width={1280}
         height={400}
         className="rounded-md mt-6 w-full object-cover object-center h-[300px] sm:h-[500px] max-h-[500px]"
