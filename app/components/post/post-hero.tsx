@@ -6,12 +6,13 @@ import PostBody from "./post-body";
 
 interface PostHeroProps {
   post: Post;
+  locale: string;
 }
 
-const PostHero = ({ post }: PostHeroProps) => {
+const PostHero = ({ post, locale }: PostHeroProps) => {
   return (
     <div>
-      <PostContent isPostPage={true} post={post} />
+      <PostContent isPostPage={true} post={post} locale={locale} />
       <Image
         src={`${process.env.NEXT_PUBLIC_ASSETS_URL as string}${post?.image}`}
         alt={post?.title}

@@ -3,21 +3,26 @@ import Image from "next/image";
 
 import Link from "next/link";
 import PostContent from "./post-content";
+import getDictionary from "@/lib/getDictonary";
 
 interface PostProps {
   post: Post;
   layout?: "horizontal" | "vertical";
   reverse?: boolean;
+  locale: string;
 }
 
-const PostCard = ({
+const PostCard = async ({
   post,
   layout = "horizontal",
   reverse = false,
+  locale,
 }: PostProps) => {
+  const dictionary = await getDictionary(locale);
+
   return (
     <Link
-      href={`/post/${post?.slug}`}
+      href={`/${locale}/post/${post?.slug}`}
       className={`@container ${
         layout === "horizontal"
           ? "grid items-center grid-cols-1  md:grid-cols-2 gap-10"
@@ -33,7 +38,7 @@ const PostCard = ({
           reverse ? "md:order-last" : ""
         }`}
       />
-      <PostContent post={post} />
+      <PostContent post={post} locale={locale} />
     </Link>
   );
 };

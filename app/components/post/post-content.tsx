@@ -1,3 +1,4 @@
+import getDictionary from "@/lib/getDictonary";
 import { getReadingTime, getRelativeDate } from "@/lib/helpers";
 import { Post } from "@/types/collection";
 import { ArrowRight } from "lucide-react";
@@ -5,9 +6,15 @@ import { ArrowRight } from "lucide-react";
 interface PostContentProps {
   post: Post;
   isPostPage?: boolean;
+  locale: string;
 }
 
-const PostContent = ({ post, isPostPage = false }: PostContentProps) => {
+const PostContent = async ({
+  post,
+  isPostPage = false,
+  locale,
+}: PostContentProps) => {
+  const dictionary = await getDictionary(locale);
   return (
     <div className="space-y-2">
       <div className="@md:text-sm  text-xs items-center gap-2 flex">
@@ -38,7 +45,8 @@ const PostContent = ({ post, isPostPage = false }: PostContentProps) => {
       <div>
         {!isPostPage && (
           <span className="inline-flex items-center space-x-1 text-sm font-medium text-rose-500 hover:text-rose-600 cursor-pointer">
-            Read More <ArrowRight className="inline-block" size={16} />
+            {dictionary.buttons.readmore}{" "}
+            <ArrowRight className="inline-block" size={16} />
           </span>
         )}
       </div>

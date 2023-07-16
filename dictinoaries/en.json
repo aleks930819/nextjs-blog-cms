@@ -1,0 +1,23 @@
+{
+  "navigation": {
+    "links": {
+      "cities": "Cities",
+      "experiences": "Experiences"
+    }
+  },
+  "buttons": {
+    "readmore": "Read More"
+  },
+
+  "ctaCard": {
+    "title": "Explore the world",
+    "subtitle": "Start your journey with me",
+    "button": "Sign Up",
+    "placeholder": "Write your email"
+  },
+  "footer": {
+    "rightsText": "© 2023 All rights reserved.",
+    "creatorText": "Created with love by",
+    "currentlyAtText": "Currently at"
+  }
+}

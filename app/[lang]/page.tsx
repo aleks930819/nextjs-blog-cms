@@ -8,7 +8,6 @@ import PostList from "@/app/components/post/post-lists";
 import CTACard from "@/app/components/elements/cta-card";
 
 export default async function Home({ params }: { params: { lang: string } }) {
-  console.log(params);
   const getAllPosts = async () => {
     try {
       const posts = await directus.items("post").readByQuery({
@@ -38,11 +37,18 @@ export default async function Home({ params }: { params: { lang: string } }) {
   return (
     <PaddingContainer>
       <main className="h-auto space-y-10">
-        <PostCard post={posts[0]} />
-        <PostList posts={posts?.filter((_, index) => index > 0 && index < 3)} />
-        <CTACard />
-        {posts[3] && <PostCard post={posts[3]} />}
-        <PostList posts={posts?.filter((_, index) => index > 3 && index < 6)} />
+        <PostCard post={posts[0]} locale={params.lang} />
+        <PostList
+          locale={params.lang}
+          posts={posts?.filter((_, index) => index > 0 && index < 3)}
+        />
+        <CTACard locale={params.lang} />
+        {posts[3] && <PostCard locale={params.lang} post={posts[3]} />}
+        locale={params.lang}
+        <PostList
+          locale={params.lang}
+          posts={posts?.filter((_, index) => index > 3 && index < 6)}
+        />
       </main>
     </PaddingContainer>
   );

@@ -27,7 +27,13 @@ export const generateStaticParams = async () => {
   } catch (err) {}
 };
 
-const CategoryPage = async ({ params }: { params: { category: string } }) => {
+const CategoryPage = async ({
+  params,
+}: {
+  params: { category: string; lang: string };
+}) => {
+  const locale = params.lang;
+
   const getCategoryData = async () => {
     try {
       const category = await directus.items("category").readByQuery({
@@ -66,7 +72,7 @@ const CategoryPage = async ({ params }: { params: { category: string } }) => {
 
   return (
     <PaddingContainer>
-      <PostList posts={typeCorrectedCategory.posts} />
+      <PostList posts={typeCorrectedCategory.posts} locale={locale} />
     </PaddingContainer>
   );
 };

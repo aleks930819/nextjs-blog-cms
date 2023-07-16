@@ -1,18 +1,23 @@
-import React, { FC } from 'react';
-import PaddingContainer from '../layout/padding-container';
-import siteConfig from '@/config/site';
-import SocialLink from '../elements/soclial-links';
+import React, { FC } from "react";
 
-interface FooterProps {}
+import siteConfig from "@/config/site";
 
-const Footer: FC<FooterProps> = () => {
+import PaddingContainer from "../layout/padding-container";
+import SocialLink from "../elements/soclial-links";
+import getDictionary from "@/lib/getDictonary";
+
+interface FooterProps {
+  locale: string;
+}
+
+const Footer: FC<FooterProps> = async ({ locale }) => {
+  const dictionary = await getDictionary(locale);
   return (
     <div className="py-6 border-t mt-10">
       <PaddingContainer>
         <div>
           <h3 className="text-3xl font-bold">{siteConfig.siteName}</h3>
           <p className="max-w-md mt-2 text-lg text-neutral-500">
-            {siteConfig.desciprtion}
           </p>
         </div>
         <div className="mt-6 flex justify-between gap-4 ">
@@ -40,7 +45,7 @@ const Footer: FC<FooterProps> = () => {
               <div className="text-sm text-netural-400">Currently At</div>
               <div className="bg-white shadow-md rounded-md  flex items-center gap-2">
                 <div className="bg-emerald-200 rounded-full w-2 h-2" />
-                {siteConfig.currentlyAt}
+                {dictionary.footer.currentlyAtText}
               </div>
             </div>
           </div>
@@ -48,9 +53,9 @@ const Footer: FC<FooterProps> = () => {
 
         <div className="border-t py-3 flex items-center gap-4">
           <div className="text-sm text-neutral-400">
-            All rights are reserver | Copyright 2023
+            {dictionary.footer.rightsText}
           </div>
-          <div>Made with love by @alex</div>
+          <div>{dictionary.footer.creatorText} @alex</div>
         </div>
       </PaddingContainer>
     </div>

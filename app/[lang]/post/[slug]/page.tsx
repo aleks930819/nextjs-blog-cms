@@ -30,7 +30,11 @@ export const generateStaticParams = async () => {
   }
 };
 
-const PostPage = async ({ params }: { params: { slug: string } }) => {
+const PostPage = async ({
+  params,
+}: {
+  params: { slug: string; lang: string };
+}) => {
   const getPostData = async () => {
     try {
       const post = await directus.items("post").readByQuery({
@@ -62,7 +66,7 @@ const PostPage = async ({ params }: { params: { slug: string } }) => {
   }
   return (
     <PaddingContainer>
-      <PostHero post={post} />
+      <PostHero post={post} locale={params.lang} />
       <div className="mt-10 mb-10 flex gap-10  relative flex-col sm:flex-row">
         <div className="relative">
           <div className="sticky top-28 flex flex-col gap-4">
@@ -85,7 +89,7 @@ const PostPage = async ({ params }: { params: { slug: string } }) => {
         </div>
         <PostBody body={post.body} />
       </div>
-      <CTACard />
+      <CTACard locale={params.lang} />
     </PaddingContainer>
   );
 };
