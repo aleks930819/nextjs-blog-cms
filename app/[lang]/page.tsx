@@ -1,15 +1,14 @@
-import Link from "next/link";
-import { DUMMY_POSTS } from "@/DUMMY_DATA";
-
-import PaddingContainer from "./components/layout/padding-container";
-import PostCard from "./components/post/post-card";
-import PostList from "./components/post/post-lists";
-import CTACard from "./components/elements/cta-card";
-import directus from "@/lib/directus";
-import { NOTFOUND } from "dns";
 import { notFound } from "next/navigation";
 
-export default async function Home() {
+import directus from "@/lib/directus";
+
+import PaddingContainer from "@/app/components/layout/padding-container";
+import PostCard from "@/app/components/post/post-card";
+import PostList from "@/app/components/post/post-lists";
+import CTACard from "@/app/components/elements/cta-card";
+
+export default async function Home({ params }: { params: { lang: string } }) {
+  console.log(params);
   const getAllPosts = async () => {
     try {
       const posts = await directus.items("post").readByQuery({
@@ -31,8 +30,6 @@ export default async function Home() {
   };
 
   const posts = await getAllPosts();
-
-  console.log(posts);
 
   if (!posts) {
     return notFound();

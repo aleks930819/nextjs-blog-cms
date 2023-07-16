@@ -1,11 +1,12 @@
-import { DUMMY_POSTS } from "@/DUMMY_DATA";
+import { notFound } from "next/navigation";
+
 import CTACard from "@/app/components/elements/cta-card";
 import SocialLink from "@/app/components/elements/soclial-links";
 import PaddingContainer from "@/app/components/layout/padding-container";
 import PostBody from "@/app/components/post/post-body";
 import PostHero from "@/app/components/post/post-hero";
 import directus from "@/lib/directus";
-import { notFound } from "next/navigation";
+
 export const generateStaticParams = async () => {
   try {
     const posts = await directus.items("post").readByQuery({

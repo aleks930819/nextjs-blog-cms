@@ -1,9 +1,10 @@
-import { DUMMY_CATEGORIES, DUMMY_POSTS } from "@/DUMMY_DATA";
-import PaddingContainer from "../components/layout/padding-container";
-import PostList from "../components/post/post-lists";
-import directus from "@/lib/directus";
 import { notFound } from "next/navigation";
+
 import { Post } from "@/types/collection";
+
+import PaddingContainer from "@/app/components/layout/padding-container";
+import PostList from "@/app/components/post/post-lists";
+import directus from "@/lib/directus";
 
 export const generateStaticParams = async () => {
   try {
