@@ -2,6 +2,7 @@ import Link from "next/link";
 import { FC } from "react";
 import PaddingContainer from "../layout/padding-container";
 import getDictionary from "@/lib/getDictonary";
+import LangSwitcher from "./lang-switcher";
 
 interface NavigationProps {
   locale: string;
@@ -19,6 +20,9 @@ const Navigation: FC<NavigationProps> = async ({ locale }) => {
           {/* Category Links */}
           <nav>
             <ul className="flex items-center gap-4 text-neutral-500">
+              <li>
+                <LangSwitcher locale={locale} />
+              </li>
               <li>
                 <Link href={`/${locale}/cities`}>
                   {dictionary.navigation.links.cities}
