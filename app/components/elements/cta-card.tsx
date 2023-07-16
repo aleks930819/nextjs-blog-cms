@@ -1,6 +1,33 @@
-import Image from 'next/image';
+import directus from "@/lib/directus";
+import { revalidateTag } from "next/cache";
+import Image from "next/image";
 
-const CTACard = () => {
+const CTACard = async () => {
+  const formAction = async (formData: FormData) => {
+    "use server";
+    try {
+      const email = formData.get("email");
+      await directus.items("subscribers").createOne({
+        email,
+      });
+      revalidateTag("subscribers");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const subscribersCount = fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}items/subscribers?meta=total_count&access_token=${process.env.ADMIN_TOKEN}`,
+    {
+      next: {
+        tags: ["subscribers"],
+      },
+    }
+  )
+    .then((res) => res.json())
+    .then((res) => res.meta.total_count)
+    .catch((err) => console.log(err));
+
   return (
     <div className="rounded-md bg-slate-200 py-10 px-6 relative overflow-hidden">
       {/* Overlay */}
@@ -25,8 +52,14 @@ const CTACard = () => {
           Eaque sapiente assumenda non.
         </p>
         {/* Form */}
-        <form className=" flex flex-col md:flex-row items-center gap-2 mt-6">
+        <form
+          key={subscribersCount}
+          action={formAction}
+          className=" flex flex-col md:flex-row items-center gap-2 mt-6"
+        >
           <input
+            type="email"
+            name="email"
             className="bg-white text-base rounded-md py-3 px-3 w-full md:w-auto
              outline-none focus:ring-2 ring-netural-400 placeholder:text-sm
             "
@@ -40,6 +73,12 @@ const CTACard = () => {
             Sign Up
           </button>
         </form>
+      </div>
+      {/* Subscribers */}
+      <div>
+        <span className="text-4xl font-bold z-[200]">
+          {`Join our ${await subscribersCount} subscribers`}
+        </span>
       </div>
     </div>
   );
