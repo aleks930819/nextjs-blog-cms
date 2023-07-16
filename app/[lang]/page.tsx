@@ -8,7 +8,7 @@ import PostList from "@/app/components/post/post-lists";
 import CTACard from "@/app/components/elements/cta-card";
 
 export default async function Home({ params }: { params: { lang: string } }) {
-  const getAllPosts = async () => {
+   const getAllPosts = async () => {
     try {
       const posts = await directus.items("post").readByQuery({
         fields: [

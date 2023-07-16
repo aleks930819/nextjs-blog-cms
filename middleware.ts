@@ -38,5 +38,5 @@ export default function middleware(request: NextRequest) {
 // Matcher
 export const config = {
   // Match ingornig `/_next/` and `/api/` folders
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico|robots.txt|sitemap).*)"],
 };
